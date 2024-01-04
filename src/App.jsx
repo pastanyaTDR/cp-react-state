@@ -15,12 +15,19 @@ export default class App extends Component {
       show:true,
       isShown:"fa-eye",
       isHidden:"fa-eye-slash",
+      interval:0
     };
   }
 
   display_rev =()=>{
    this.setState({show:!this.state.show});
     console.log(this.state.show)
+  }
+  updateinterval =()=>{
+    this.setState({interval:this.state.interval+1});
+  }
+  componentDidMount(){
+    setInterval(this.updateinterval,1000)
   }
 
   render() {
@@ -30,6 +37,7 @@ export default class App extends Component {
         {this.state.show && (
           <div id="itemContainer">
             <img src={this.state.person.imageSrc} alt="" id="image" />
+            {this.state.interval}
             <div id="textContainer">
               <h5 id="nameId">{this.state.person.name}</h5>
               <h5 id="bioId">{this.state.person.bio}</h5>
